@@ -1,0 +1,141 @@
+// Importing the Scanner class
+import java.util.Scanner;
+
+// A class to represent a student
+abstract class Student {
+    // Instance variables
+    private String name;
+    private int id;
+    private String department;
+
+    // Constructor
+    public Student(String name, int id, String department) {
+        this.name = name;
+        this.id = id;
+        this.department = department;
+    }
+
+    // Getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int Uid) {
+        this.id = id;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    // An abstract method to register a student
+    public abstract void register();
+
+    // A method to display the student details
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("Department: " + department);
+    }
+}
+
+// A subclass to represent a regular student
+class RegularStudent extends Student {
+    // Constructor
+    public RegularStudent(String name, int id, String department) {
+        // Invoking the superclass constructor
+        super(name, id, department);
+    }
+
+    // Overriding the abstract method to register a regular student
+    @Override
+    public void register() {
+        System.out.println("Registering a Regular student...");
+        //  register a regular student
+    }
+}
+
+// A subclass to represent an exchange student
+class ExchangeStudent extends Student {
+    // Constructor
+    public ExchangeStudent(String name, int id, String department) {
+        // Invoking the superclass constructor
+        super(name, id, department);
+    }
+
+    // Overriding the abstract method to register an exchange student
+    @Override
+    public void register() {
+        System.out.println("Registering an exchange student...");
+        // Some logic to register an exchange student
+    }
+}
+
+// A class to test the program
+public class StudentRegistration {
+    public static void main(String[] args) {
+        // Creating a Scanner object to read the user input
+        Scanner sc = new Scanner(System.in);
+
+        // Printing a welcome message
+        System.out.println("WELCOME TO HARAMAYA UNIVERSITY");
+
+        // Asking the user to enter the type of the student
+        System.out.print("Enter the type of the student (Regular or Exchange): ");
+        String type = sc.next(); // Reading a string input
+
+        // Asking the user to enter the name of the student
+        System.out.print("Enter the name of the student: ");
+        String name = sc.next(); // Reading a string input
+
+        // Asking the user to enter the id of the student
+        System.out.print("Enter the id of the student: ");
+        int id = sc.nextInt(); // Reading an integer input
+
+        // Asking the user to enter the department of the student
+        System.out.print("Enter the department of the student: ");
+        String department = sc.next(); // Reading a string input
+
+        // Creating a Student object based on the type of the student
+        Student student;
+        if (type.equalsIgnoreCase("regular")) {
+            // Creating a RegularStudent object
+            student = new RegularStudent(name, id, department);
+        } else if (type.equalsIgnoreCase("exchange")) {
+            // Creating an ExchangeStudent object
+            student = new ExchangeStudent(name, id, department);
+        } else {
+            // Invalid type
+            System.out.println("Invalid type. Please enter regular or exchange.");
+            student = null; // Assigning null to the student variable
+        }
+
+        // Closing the Scanner object
+        sc.close();
+
+        // Checking if the student object is not null
+        if (student != null) {
+            // Registering the student
+            student.register();
+            // Displaying the student
+            student.display();
+            // Printing a confirmation message
+            System.out.println("You are successfully registered.");
+        }
+        else{
+            System.out.println("Please input valid ID number");
+        }
+    }
+}
